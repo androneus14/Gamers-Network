@@ -1,15 +1,15 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { QUERY_SINGLE_POST} from '../../../utils/queries'
+import { QUERY_POST} from '../utils/queries'
 
-import RatingSystem from '../../RatingSystem';
-import CommentForm from '../../CommentForm';
-import CommentList from '../../CommentList';
+import RatingSystem from '../components/RatingSystem';
+import CommentForm from '../components/CommentForm';
+import CommentList from '../components/CommentList';
 
 const SinglePost = props => {
     const { id: postId } = useParams();
-    const { loading, data } = useQuery(QUERY_SINGLE_POST, {
+    const { loading, data } = useQuery(QUERY_POST, {
         variables: { id: postId },
     });
 

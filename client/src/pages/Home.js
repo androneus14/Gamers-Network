@@ -1,9 +1,9 @@
 import React from 'react';
 import { useQuery} from '@apollo/client';
-import { QUERY_POSTS } from '../../../utils/queries';
+import { QUERY_POSTS } from '../utils/queries'
 
-import PostList from '../../PostList';
-import PostForm from '../../PostForm';
+import PostList from '../components/PostList';
+import PostForm from '../components/PostForm';
 
 const Home = () => {
     const { loading, data } = useQuery(QUERY_POSTS);

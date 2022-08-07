@@ -1,41 +1,41 @@
 [
     {
-        "username": "Andy Nguyen",
+        "username": "AndyNguyen",
         "email": "andynguyen_3@hotmail.com",
         "password": "password1",
         "friends": [],
         "posts": []
     },
     {
-        "username": "John Price",
+        "username": "JohnPrice",
         "email": "johnprice@gmail.com",
         "password": "password2",
         "friends": [],
         "posts": []
     },
     {
-        "username": "John MacTavish",
+        "username": "JohnMacTavish",
         "email": "johnmactavish@gmail.com",
         "password": "password3",
         "friends": [],
         "posts": []
     },
     {
-        "username": "Simon Riley",
+        "username": "SimonRiley",
         "email": "simonriley@gmail.com",
         "password": "password4",
         "friends": [],
         "posts": []
     },
     {
-        "username": "Gary Sanderson",
+        "username": "GarySanderson",
         "email": "garysanderson@gmail.com",
         "password": "password5",
         "friends": [],
         "posts": []
     },
     {
-        "username": "Joseph Allen",
+        "username": "JosephAllen",
         "email": "josephallen@gmail.com",
         "password": "password6",
         "friends": [],

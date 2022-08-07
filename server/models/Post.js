@@ -72,7 +72,7 @@ const postSchema = new Schema({
 });
 
 // Count the comments that this post has attached to it
-gamePostSchema.virtual('commentCount').get(function() {
+postSchema.virtual('commentCount').get(function() {
     return this.comments.length;
 });
 

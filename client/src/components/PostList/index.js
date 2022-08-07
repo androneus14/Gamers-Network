@@ -6,7 +6,7 @@ const PostList = ({
     posts, title
 }) => {
     if (!posts.length) {
-        return <h3>You have posted a discussion yet!</h3>;
+        return <h3>No discussions started yet.</h3>;
     }
 
     return (
@@ -30,7 +30,7 @@ const PostList = ({
                                     <p id='gameTitle'>{post.gameTitle}</p>
                                     <p>
                                         <span>
-                                            {[1,2,3,4,5,6,7,8,9,10].map((value) => (
+                                            {[1,2,3,4,5].map((value) => (
                                                 <RatingSystem
                                                     key={post.gameRating}
                                                     filled={value <= post.gameRating}

@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { QUERY_POST} from '../utils/queries'
+import Auth from '../utils/auth';
 
 import RatingSystem from '../components/RatingSystem';
 import CommentForm from '../components/CommentForm';
@@ -38,7 +39,7 @@ const SinglePost = props => {
                     </div>
                     <div className='card-body'>
                         <span>
-                            {[1,2,3,4,5,6,7,8,9,10].map((value) => (
+                            {[1,2,3,4,5].map((value) => (
                             <RatingSystem
                                 key={post.gameRating}
                                 filled={value <=post.gameRating}
@@ -48,12 +49,11 @@ const SinglePost = props => {
                     </div>
                 </div>
 
-                <div className='my-5'>
+                {post.commentCount > 0 && (
                     <CommentList comments={post.comments} />
-                </div>
-                <div className='m-3 p-4' style={{ border: '2px dotted #1a1a1a' }}>
-                    <CommentForm postId={post._id} />
-                </div>
+                )}
+
+                {Auth.loggedIn() && <CommentForm postId={post._id} />}
             </div>
         </div>
     );

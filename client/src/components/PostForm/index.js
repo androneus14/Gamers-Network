@@ -100,10 +100,10 @@ const PostForm = () => {
 
                 <p
                     className={`m-0 ${
-                        characterCount === 280 ? 'text-danger' : ''
+                        gameReviewCharacterCount === 280 ? 'text-danger' : ''
                     }`}
                 >
-                    Character Count: {characterCount}/280
+                    Character Count: {gameReviewCharacterCount}/280
                 </p>
 
                 <textarea
@@ -117,7 +117,7 @@ const PostForm = () => {
 
                 <span className='ratingSystem'>Rating:</span>
                 <span className='ratingFire'>
-                    {[1,2,3,4,5,6,7,8,9,10].map((value) => (
+                    {[1,2,3,4,5].map((value) => (
                         <RatingSystem
                             key={value}
                             filled={value <= gameRating}

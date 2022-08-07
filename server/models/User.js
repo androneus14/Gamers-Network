@@ -24,12 +24,6 @@ const userSchema = new Schema({
         required: true,
         minlength: 5
     },
-
-    // The gaming platform this user uses
-    platform: {
-        type: String,
-        required: true
-    },
     
     // Post discussions that the user has created
     posts: [

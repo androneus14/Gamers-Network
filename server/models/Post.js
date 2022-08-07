@@ -24,12 +24,6 @@ const postSchema = new Schema({
         maxlength: 280
     },
 
-    // The gaming platform the game was played on
-    platform: {
-        type: String,
-        required: true
-    },
-
     // When the discussion post is created
     createdAt: {
         type: Date,

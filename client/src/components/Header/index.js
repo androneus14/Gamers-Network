@@ -30,8 +30,8 @@ const Header = () => {
                             </>
                         ) : (
                             <>
-                                <Link className='btn btn-lg btn-info m-2' to='/login'>Login</Link>
-                                <Link className='btn btn-lg btn-info m-2' to='/signup'>Sign Up</Link>
+                                <Link className='nav-btn' id='navbar' to='/login'>Login</Link>
+                                <Link className='nav-btn' id='navbar' to='/signup'>Sign Up</Link>
                             </>
                         )}
                     </nav>

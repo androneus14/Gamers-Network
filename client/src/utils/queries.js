@@ -79,9 +79,9 @@ export const QUERY_POSTS = gql`
 `;
 
 //When I view a single post, I get all the posts information, including the comments under the post
-export const QUERY_POST = gql`
-    query post($id: ID!) {
-        post(_id: $id) {
+export const QUERY_SINGLE_POST = gql`
+    query getSinglePost($postId: ID!) {
+        post(postId: $postId) {
             _id
             gameTitle
             gameRating

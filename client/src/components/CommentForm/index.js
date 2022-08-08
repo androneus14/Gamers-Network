@@ -1,70 +1,81 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import Auth from '../../utils/auth';
 
 import { useMutation } from '@apollo/client';
 import { ADD_COMMENT } from '../../utils/mutations';
 
 const CommentForm = ({ postId }) => {
-    const [commentText, setCommentText] = useState('');
+    const [commentText, setBody] = useState('');
     const [characterCount, setCharacterCount] = useState(0);
 
-    const [addCommentm, { error }] = useMutation(ADD_COMMENT);
+    const [addComment, { error }] = useMutation(ADD_COMMENT);
+
+    const handleFormChange = (event) => {
+        if (event.target.value.length <= 280) {
+            setBody(event.target.value);
+            setCharacterCount(event.target.value.length);
+        }
+    };
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
         try {
-            await addCommentm({
-                variables: {
-                    commentText,
-                    postId
-                },
-            });
+            await addComment({ variables: { commentText, postId }});
 
-            setCommentText('');
+            setBody('');
             setCharacterCount(0);
-        } catch (err) {
-            console.error(err);
+        } catch (e) {
+            console.error(e);
         }
     };
 
-    const handleChange = (event) => {
-        if (event.target.value.length <= 280) {
-            setCommentText(event.target.value);
-            setCharacterCount(event.target.value.length);
-        }
-    };
 
     return (
-        <div>
-            <p 
-                className={`m-0 ${
-                    characterCount === 280 || error ? 'text-danger' : ''
-                }`}
-            >
-                Character Count: {characterCount}/280
-                {error && <span className='ml-2'>{error.message}</span>}
-            </p>
-            <form
-                className='flex-row justify-center justify-space-between-md align-center'
-                onSubmit={handleFormSubmit}
-            >
-                <textarea
-                    name='commentText'
-                    placeholder='Add your comment here...'
-                    value={commentText}
-                    className='form-input w-100'
-                    style={{ lineHeight: '1.5', resize: 'vertical' }}
-                    onChange={handleChange}
-                ></textarea>
+        <div className='comment-form'>
+            <h4>Do you agree with this user's opinion on the game? Let us know!</h4>
 
-                <button 
-                    className='btn btn-primary btn-block py-3'
-                    id='submit-btn'
-                    type='submit'
+            {Auth.loggedIn() ? (
+                <>
+                    <p 
+                        className={`m-0 ${
+                            characterCount === 280 || error ? 'text-danger' : ''
+                        }`}
                 >
-                    Submit
-                </button>
-            </form>
+                    Character Count: {characterCount}/280
+                    {error && <span className='m-0'>{error.message}</span>}
+                    </p>
+                    <form
+                        className='flex-row justify-center justify-space-between-md align-center'
+                        onSubmit={handleFormSubmit}
+                    >
+                        <div>
+                            <textarea
+                                name='commentText'
+                                placeholder='Add your comment here...'
+                                value={commentText}
+                                className='form-input w-100'
+                                style={{ lineHeight: '1.5', resize: 'vertical' }}
+                                onChange={handleFormChange}
+                            ></textarea>
+                        </div>
+                        <div>
+                            <button 
+                                id='submit-btn'
+                                type='submit'
+                            >
+                                Submit
+                            </button>
+                        </div>
+                    </form>
+                </>
+            ) : (
+                <p>
+                     You need to be logged in to share your thoughts. Please{' '}
+                    <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
+                </p>
+            )}
         </div>
     );
 };

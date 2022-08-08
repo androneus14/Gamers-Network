@@ -65,7 +65,7 @@ function App() {
                                 <Route path="" element={<Profile />} />
                             </Route>
                             <Route
-                                path='/posts/:postId'
+                                path='/post/:postId'
                                 element={<SinglePost />}
                             />
                         </Routes>

@@ -72,7 +72,7 @@ const Signup = () => {
                                     onChange={handleChange}
                                 />
                                 <button
-                                    className='btn btn-block btn-primary'
+                                    id='submit-btn'
                                     type='submit'
                                 >
                                     Submit

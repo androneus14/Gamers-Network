@@ -15,25 +15,24 @@ const PostForm = () => {
     const [gameReviewCharacterCount, setGameReviewCharacterCount] = useState(0);
 
     const [addPost, { error }] = useMutation(ADD_POST, {
-        update(cache, { data: { addPost } }) {
-            try {
-                const { posts } = cache.readQuery({ query: QUERY_POSTS });
-
-                cache.writeQuery({
-                    query: QUERY_POSTS,
-                    data: { posts: [addPost, ...posts] },
-                });
-            } catch (e) {
-                console.error(e);
-            }
-
+        update(cache, { data: { addGamePost } }) {
+          try {
             const { me } = cache.readQuery({ query: QUERY_ME });
             cache.writeQuery({
                 query: QUERY_ME,
                 data: { me: { ...me, posts: [...me.posts, addPost] } },
             });
+          } catch (e) {
+            console.error(e);
+          }
+          
+          const { posts } = cache.readQuery({ query: QUERY_POSTS });
+          cache.writeQuery({
+            query: QUERY_POSTS,
+            data: { posts: [addPost, ...posts] },
+          });
         },
-    });
+      });
 
     // When a user types in the title of their discussion post / game title
     const handleChange = (event) => {
@@ -93,8 +92,8 @@ const PostForm = () => {
                     name='gameTitle'
                     placeholder='What game are you playing?'
                     value={gameTitle}
-                    className='form-input w-100'
-                    style={{ lineHeight: '1.5', resize: 'vertical' }}
+                    className='form-input'
+                    id='input-gameTitle'
                     onChange={handleChange}
                 ></textarea>
 
@@ -110,13 +109,13 @@ const PostForm = () => {
                     name='gameReview'
                     placeholder='What do you think of this game?'
                     value={gameReview}
-                    className='form-input col-12 col-md-9'
-                    style={{ lineHeight: '1.5', resize: 'vertical' }}
+                    className='form-input'
+                    id='input-gameReview'
                     onChange={handleGameReviewChange}
                 ></textarea>
 
-                <span className='ratingSystem'>Rating:</span>
-                <span className='ratingFire'>
+                <span className='ratingSystem' id='ratingSystem'>Rating:</span>
+                <span className='ratingFire' id='ratingFire'>
                     {[1,2,3,4,5].map((value) => (
                         <RatingSystem
                             key={value}
@@ -127,7 +126,6 @@ const PostForm = () => {
                 </span>
 
                 <button
-                    className='btn btn-primary btn-block py-3'
                     id='submit-btn'
                     type='submit'
                 >

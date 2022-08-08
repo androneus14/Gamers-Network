@@ -1,1 +1,0 @@
-{"version":3,"file":"static/css/main.297a6797.css","mappings":"AAAA,MACI,mBACJ,CCFA,YACI,YAAa,CACb,4BACJ","sources":["index.css","components/Header/style.css"],"sourcesContent":[":root {\r\n    --maincolor: #51007a;\r\n}","#navigation{\r\n    display: flex;\r\n    justify-content: space-evenly;\r\n}"],"names":[],"sourceRoot":""}
